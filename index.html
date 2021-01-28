@@ -13,35 +13,32 @@
   <div class="container" id="app" style="margin-top: 40px;">
     <div class="row">
       <div class="col-md-8">
-        <div class="form-group">
+        <div class="form-group mb-2">
           <label for="">Origin price(USD)</label>
           <input v-model="originPrice" type="text" class="form-control" name="origin_price">
         </div>
-        <div class="form-group">
+        <div class="form-group mb-2">
           <label for="">Ebay price(USD)</label>
           <input v-model="ebayPrice" type="text" class="form-control" name="origin_price">
         </div>
       </div>
       <div class="col-md-4">
-        <div class="form-group">
-          <label for="">Checkout rate</label>
+        <div class="form-group mb-2">
+          <label for="">Checkout rate(k VND)</label>
           <input v-model="checkoutRate" type="text" class="form-control" name="origin_price">
         </div>
-        <div class="form-group">
-          <label for="">Paypal rate</label>
+        <div class="form-group mb-2">
+          <label for="">Paypal rate(k VND)</label>
           <input v-model="paypalRate" type="text" class="form-control" name="origin_price">
         </div>
-        <div class="form-group">
-          <label for="">Checkout tax</label>
+        <div class="form-group mb-2">
+          <label for="">Checkout tax(%)</label>
           <input v-model="checkoutTax" type="text" class="form-control" name="origin_price">
         </div>
       </div>
     </div>
     <div class="row">
-      <h3 style="margin-top:20px;">Profit</h3>
-      <div class="form-group">
-        <label for="">{{ (profit*1000).toFixed(0) }} VND ({{ profitPercent.toFixed(0) }} %)</label>
-      </div>
+      <h3 style="margin-top:20px;">Profit: <span style="color: brown;">{{ (profit*1000).toFixed(0) }} VND</span><span>({{ profitPercent.toFixed(0) }}%)</span></h3>
     </div>
   </div>
 
