@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container" id="app">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="">Origin price(USD)</label>
+          <input v-model="originPrice" type="text" class="form-control" name="origin_price">
+        </div>
+        <div class="form-group">
+          <label for="">Ebay price(USD)</label>
+          <input v-model="ebayPrice" type="text" class="form-control" name="origin_price">
+        </div>
+        <h3 style="margin-top:20px;">Profit</h3>
+        <div class="form-group">
+          <label for="">{{ (profit*1000).toFixed(0) }} VND ({{ profitPercent.toFixed(0) }} %)</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="">Checkout rate</label>
+          <input v-model="checkoutRate" type="text" class="form-control" name="origin_price">
+        </div>
+        <div class="form-group">
+          <label for="">Paypal rate</label>
+          <input v-model="paypalRate" type="text" class="form-control" name="origin_price">
+        </div>
+        <div class="form-group">
+          <label for="">Checkout tax</label>
+          <input v-model="checkoutTax" type="text" class="form-control" name="origin_price">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        originPrice: 0,
+        ebayPrice: 0,
+        paypalTax: 0.05,
+        ebayTax: 0.1,
+        checkoutRate: 16,
+        paypalRate: 22,
+        checkoutTax: 0
+      },
+      computed: {
+        profit() {
+          let fee = this.ebayPrice * (this.paypalTax + this.ebayTax)
+          let netPaypalValue = this.ebayPrice - fee
+          let checkoutFee = this.originPrice * this.checkoutTax
+          let totalCheckout = (Number(this.originPrice) + checkoutFee) * this.checkoutRate
+          let totalReceived = netPaypalValue * this.paypalRate
+
+          return totalReceived - totalCheckout
+        },
+        profitPercent() {
+          return this.originPrice ? this.profit / this.originPrice / this.paypalRate * 100 : 0
+        }
+      },
+      methods: {
+      }
+    })
+  </script>
+</body>
+
+</html>
