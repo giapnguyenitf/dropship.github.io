@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <div class="container" id="app">
+  <div class="container" id="app" style="margin-top: 40px;">
     <div class="row">
       <div class="col-md-8">
         <div class="form-group">
@@ -20,10 +20,6 @@
         <div class="form-group">
           <label for="">Ebay price(USD)</label>
           <input v-model="ebayPrice" type="text" class="form-control" name="origin_price">
-        </div>
-        <h3 style="margin-top:20px;">Profit</h3>
-        <div class="form-group">
-          <label for="">{{ (profit*1000).toFixed(0) }} VND ({{ profitPercent.toFixed(0) }} %)</label>
         </div>
       </div>
       <div class="col-md-4">
@@ -39,6 +35,12 @@
           <label for="">Checkout tax</label>
           <input v-model="checkoutTax" type="text" class="form-control" name="origin_price">
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <h3 style="margin-top:20px;">Profit</h3>
+      <div class="form-group">
+        <label for="">{{ (profit*1000).toFixed(0) }} VND ({{ profitPercent.toFixed(0) }} %)</label>
       </div>
     </div>
   </div>
