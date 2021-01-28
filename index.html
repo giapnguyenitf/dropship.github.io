@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="row">
-      <h3 style="margin-top:20px;">Profit: <span style="color: brown;">{{ (profit*1000).toFixed(0) }} VND</span><span>({{ profitPercent.toFixed(0) }}%)</span></h3>
+      <h3 style="margin-top:20px;">Profit: <span style="color: brown;">{{ (profit*1000).toFixed(0) | formatMoney }}</span><span>({{ profitPercent.toFixed(0) }}%)</span></h3>
     </div>
   </div>
 
@@ -71,6 +71,16 @@
         },
         profitPercent() {
           return this.originPrice ? this.profit / this.originPrice / this.paypalRate * 100 : 0
+        }
+      },
+      filters: {
+        formatMoney(value) {
+          let formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          })
+
+          return formatter.format(value)
         }
       },
       methods: {
